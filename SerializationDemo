@@ -1,0 +1,32 @@
+import java.io.*;
+
+public class SerializationDemo {
+
+ static class Person implements Serializable{ 
+	String name;
+	int age;
+	public Person(String name,int age){
+	this.name=name;
+	this.age=age;
+	}
+	public String toString(){
+	return "name="+name+"  Age="+age;
+	}
+}
+
+public static void main(String args[]){
+	try{
+	Person person=new Person("suhana",26);
+	FileOutputStream f=new FileOutputStream("person.ser");
+	ObjectOutputStream ob=new ObjectOutputStream(f);
+	ob.writeObject(person);
+	System.out.println("seri"+person);
+	
+	FileInputStream f1=new FileInputStream("person.ser");
+	ObjectInputStream ob1=new ObjectInputStream(f1);
+	Person de=(Person) ob1.readObject();
+	System.out.println("der"+de);
+	}catch(Exception e){
+	System.out.println(e);
+}
+}}

@@ -1,11 +1,8 @@
 class BankAccount {
     private double balance;
-
-    // Constructor
     public BankAccount(double initialBalance) {
         this.balance = initialBalance;
     }
-
     // Synchronized deposit method
     public synchronized void deposit(double amount) {
         if (amount > 0) {
@@ -14,29 +11,18 @@ class BankAccount {
             System.out.println("New balance: " + balance);
         }
     }
-
-    // Method to get the current balance
     public double getBalance() {
         return balance;
     }
 }
-
 public class BankDeposit {
     public static void main(String[] args) {
-        // Create a bank account with an initial balance of 1000
         BankAccount account = new BankAccount(1000);
-
-        // Thread 1 deposits 500
         Thread t1 = new Thread(() -> account.deposit(500));
-        // Thread 2 deposits 300
         Thread t2 = new Thread(() -> account.deposit(300));
-
-        // Start both threads
         t1.start();
         t2.start();
-
         try {
-            // Wait for both threads to finish
             t1.join();
             t2.join();
         } catch (InterruptedException e) {

@@ -1,0 +1,23 @@
+import java.util.*;
+class token{
+	public static void main(String args[]){
+	String s="hello world! I love u baby ";
+	StringTokenizer t=new StringTokenizer(s," ,");
+	System.out.println("count t"+t.countTokens());
+	System.out.println("Tokens:");
+	while(t.hasMoreTokens()){
+	System.out.println(t.nextToken());}
+	String s1="hi |ra| lanja";
+	StringTokenizer t1=new StringTokenizer(s1,"|");
+	while(t1.hasMoreTokens()){
+	System.out.println(t1.nextToken());}
+ 	String sentence3 = "Hello World Java Programming";
+        StringTokenizer tokenizer3 = new StringTokenizer(sentence3);         
+        System.out.println("\nTokens with default delimiter (space):");
+        while (tokenizer3.hasMoreTokens()) {
+            System.out.println(tokenizer3.nextToken());
+        }
+	
+}}
+
+ 

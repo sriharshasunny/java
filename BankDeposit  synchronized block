@@ -1,35 +1,24 @@
-class BankAccount {
-    private double balance;
-    public BankAccount(double initialBalance) {
-        this.balance = initialBalance;
-    }
-    // Synchronized deposit method
-    public synchronized void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-            System.out.println("Deposited: " + amount);
-            System.out.println("New balance: " + balance);
-        }
-    }
-    public double getBalance() {
-        return balance;
-    }
+class Bank{
+	public double bal;
+	public Bank(double bal){	
+	this.bal=bal;}
+	
+	public synchronized void deposit(double amount){
+	 if(amount>0){
+	bal+=amount;
+	System.out.println("deposited"+amount);
+	System.out.println("new balance"+bal);
+	}
 }
-public class BankDeposit {
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(1000);
-        Thread t1 = new Thread(() -> account.deposit(500));
-        Thread t2 = new Thread(() -> account.deposit(300));
-        t1.start();
-        t2.start();
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Print the final balance after both deposits
-        System.out.println("Final balance: " + account.getBalance());
-    }
+public double getBal(){
+	return bal;
+}}
+public class bankdemo{
+	public static void main(String args[]){
+	Bank b=new Bank(10000);
+	Thread t1=new Thread(()->b.deposit(1000));
+	Thread t2=new Thread(()->b.deposit(500));
+	t1.start();
+	t2.start();
+}
 }

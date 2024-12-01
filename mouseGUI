@@ -1,0 +1,71 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class Main extends Frame implements MouseListener, MouseMotionListener, ActionListener {
+    Button b1;
+    Label l;
+    public Main() {
+        b1 = new Button("Refresh");
+        b1.setBounds(50, 50, 80, 50);
+        l = new Label();
+        l.setBounds(50, 300, 100, 50);
+        add(b1);
+        add(l);
+        this.setTitle("demo");
+        this.setSize(400, 400);
+        setLayout(null);
+        setVisible(true);
+        addMouseMotionListener(this);
+        addMouseListener(this);
+        b1.addActionListener(this);
+        this.setBackground(Color.PINK);
+    }
+
+    // Mouse events
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Graphics g = this.getGraphics();
+        g.setColor(Color.RED);
+        g.fillOval(e.getX(), e.getY(), 10, 10);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        Graphics g = this.getGraphics();
+        g.setColor(Color.BLUE);
+        g.fillOval(e.getX(), e.getY(), 10, 10);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        l.setText("MOUSE IS PRESSED");
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        l.setText("MOUSE IS RELEASED");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        l.setText("MOUSE IS ENTERED");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        l.setText("MOUSE IS EXITED");
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        l.setText("MOUSE MOVED");
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        setBackground(Color.PINK);  
+        repaint();
+    }
+    public static void main(String args[]) {
+        new Main();  
+    }
+}

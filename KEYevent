@@ -1,0 +1,80 @@
+import java.awt.*;
+import java.awt.event.*;
+
+class KeyExample extends Frame implements KeyListener {
+    int x, y;
+    Label l;
+
+    KeyExample() {
+        x = 40;
+        y = 40;
+
+        l = new Label();
+        l.setBounds(20, 180, 200, 50);
+        add(l);
+
+        this.setTitle("Key Listener Example");
+        this.setSize(700, 700);
+        this.setLayout(null);
+        this.setVisible(true);
+
+        // Add the KeyListener and request focus to capture key events
+        addKeyListener(this);
+        this.requestFocus(); // Ensures the frame can capture key events
+        this.setBackground(Color.BLUE);
+    }
+
+    // Paint the rectangle at (x, y)
+    public void paint(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(x, y, 50, 50);
+    }
+
+    // Handle key press events
+    public void keyPressed(KeyEvent e) {
+        int kc = e.getKeyCode();
+        switch (kc) {
+            case KeyEvent.VK_RIGHT:
+                x = x + 10;
+                break;
+            case KeyEvent.VK_LEFT:
+                x = x - 10;
+                break;
+            case KeyEvent.VK_UP:
+                y = y - 10;
+                break;
+            case KeyEvent.VK_DOWN:
+                y = y + 10;
+                break;
+        }
+        repaint(); // Repaint the frame after moving the rectangle
+    }
+
+    // Handle key release events
+    public void keyReleased(KeyEvent e) {
+        int kc = e.getKeyCode();
+        switch (kc) {
+            case KeyEvent.VK_RIGHT:
+                l.setText("Right arrow released");
+                break;
+            case KeyEvent.VK_LEFT:
+                l.setText("Left arrow released");
+                break;
+            case KeyEvent.VK_UP:
+                l.setText("Up arrow released");
+                break;
+            case KeyEvent.VK_DOWN:
+                l.setText("Down arrow released");
+                break;
+        }
+    }
+
+    // Handle key typed events
+    public void keyTyped(KeyEvent e) {
+        l.setText("Key typed: " + e.getKeyChar());
+    }
+
+    public static void main(String args[]) {
+        new KeyExample();
+    }
+}

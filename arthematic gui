@@ -1,0 +1,78 @@
+import java.awt.*;
+import java.awt.event.*;
+
+class ArithmeticGui implements ActionListener {
+    Frame f;
+    Label l1, l2, l3;
+    TextField t1, t2, t3;
+    Button b1, b2, b3, b4;
+
+    ArithmeticGui() {
+        f = new Frame("Arithmetic Operations");
+
+        l1 = new Label("Enter first no");
+        l2 = new Label("Enter second no");
+        l3 = new Label("Result");
+
+        t1 = new TextField();
+        t2 = new TextField();
+        t3 = new TextField();
+
+        b1 = new Button("ADD");
+        b2 = new Button("SUB");
+        b3 = new Button("MUL");
+        b4 = new Button("DIV");
+        f.setLayout(new GridLayout(5,2));
+        f.add(l1);
+        f.add(t1);
+        f.add(l2);
+        f.add(t2);
+        f.add(l3);
+        f.add(t3);
+        f.add(b1);
+        f.add(b2);
+        f.add(b3);
+        f.add(b4);
+
+        // Add action listeners to buttons
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+
+        // Frame settings
+        f.setSize(400, 350);
+        f.setBackground(Color.ORANGE);
+        f.setVisible(true);
+
+        // Close the frame on window close
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        int n1 = Integer.parseInt(t1.getText());
+        int n2 = Integer.parseInt(t2.getText());
+        if (ae.getSource() == b1) {
+            t3.setText(String.valueOf(n1 + n2));
+        } else if (ae.getSource() == b2) {
+            t3.setText(String.valueOf(n1 - n2));
+        } else if (ae.getSource() == b3) {
+            t3.setText(String.valueOf(n1 * n2));
+        } else if (ae.getSource() == b4) {
+            // Prevent division by zero
+            if (n2 != 0) {
+                t3.setText(String.valueOf(n1 / n2));
+            } else {
+                t3.setText("Error: Divide by 0");
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        new ArithmeticGui();
+    }
+}

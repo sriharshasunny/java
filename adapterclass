@@ -1,0 +1,19 @@
+import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;  
+
+public class api extends WindowAdapter {  
+    api() {
+        Frame frame = new Frame("Adapter");
+        frame.setSize(300, 200);
+        frame.addWindowListener(this);
+        frame.setVisible(true);
+    }
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.exit(0);  
+    }
+    public static void main(String[] args) {
+        new api(); 
+    }
+}
